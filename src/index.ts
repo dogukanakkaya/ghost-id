@@ -1,4 +1,4 @@
-export { GhostRegistry } from './lib/GhostRegistry';
+export { ghostRegistry } from './lib/GhostRegistry';
 export { useGhost, useGhostRegistry } from './lib/useGhost';
 export {
   exportAsJSON,
@@ -7,6 +7,7 @@ export {
   copyGhostIdsToClipboard,
   printGhostIds,
 } from './lib/export-utils';
+export { GhostExport } from './lib/GhostExport';
 export type {
   GhostEntry,
   GhostId,

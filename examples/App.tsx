@@ -1,16 +1,16 @@
 import { useEffect } from 'react';
 import { LoginButton } from './components/LoginButton';
 import { LoginForm } from './components/LoginForm';
-import { GhostRegistry, downloadGhostIds, copyGhostIdsToClipboard, printGhostIds } from '../src/index';
+import { ghostRegistry, downloadGhostIds, copyGhostIdsToClipboard, printGhostIds } from '../src/index';
 
 function App() {
     useEffect(() => {
         // Log the ghost registry after components mount
         setTimeout(() => {
             console.log('👻 Ghost Registry:');
-            console.table(GhostRegistry.list());
+            console.table(ghostRegistry.list());
             console.log('\n📋 Detailed Registry:');
-            console.table(GhostRegistry.getDetails());
+            console.table(ghostRegistry.getDetails());
         }, 100);
     }, []);
 

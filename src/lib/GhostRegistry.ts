@@ -5,14 +5,9 @@ type GhostEntry = {
   renderIndex: number;
 };
 
-class GhostRegistryClass {
+class GhostRegistry {
   private registry: Map<string, GhostEntry> = new Map();
   private componentCounters: Map<string, number> = new Map();
-  private isDev: boolean;
-
-  constructor() {
-    this.isDev = process.env.NODE_ENV !== 'production';
-  }
 
   /**
    * Simple hash function to generate short deterministic IDs
@@ -34,10 +29,6 @@ class GhostRegistryClass {
    * @returns The ghost ID string
    */
   getOrCreate(componentName: string, alias?: string) {
-    if (!this.isDev) {
-      return '';
-    }
-
     const key = alias ? `${componentName}-${alias}` : componentName;
 
     if (this.registry.has(key)) {
@@ -89,11 +80,7 @@ class GhostRegistryClass {
   getDetails() {
     return Array.from(this.registry.values());
   }
-
-  isDevMode() {
-    return this.isDev;
-  }
 }
 
 // Export singleton instance
-export const GhostRegistry = new GhostRegistryClass();
+export const ghostRegistry = new GhostRegistry();

@@ -1,12 +1,12 @@
-import { GhostRegistry } from './GhostRegistry';
+import { ghostRegistry } from './GhostRegistry';
 
 export function exportAsJSON(pretty: boolean = true): string {
-    const data = GhostRegistry.list();
+    const data = ghostRegistry.list();
     return JSON.stringify(data, null, pretty ? 2 : 0);
 }
 
 export function exportAsTypeScript(): string {
-    const entries = GhostRegistry.list();
+    const entries = ghostRegistry.list();
     const lines = [
         '/**',
         ' * Auto-generated Ghost IDs',
@@ -71,7 +71,7 @@ export function printGhostIds(): void {
     console.log('👻 Ghost Registry Export');
     console.log('========================\n');
 
-    const entries = GhostRegistry.getDetails();
+    const entries = ghostRegistry.getDetails();
 
     console.table(entries);
 
@@ -81,21 +81,4 @@ export function printGhostIds(): void {
 
     console.log('\n\nTypeScript:');
     console.log(exportAsTypeScript());
-}
-
-if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
-    (window as any).GhostExport = {
-        json: exportAsJSON,
-        typescript: exportAsTypeScript,
-        download: downloadGhostIds,
-        copy: copyGhostIdsToClipboard,
-        print: printGhostIds
-    };
-
-    console.log('💡 Ghost Export utilities available:');
-    console.log('   window.GhostExport.download()    - Download as file');
-    console.log('   window.GhostExport.copy()        - Copy to clipboard');
-    console.log('   window.GhostExport.print()       - Print to console');
-    console.log('   window.GhostExport.json()        - Get JSON string');
-    console.log('   window.GhostExport.typescript()  - Get TypeScript code');
 }

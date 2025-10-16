@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react';
-import { GhostRegistry } from './GhostRegistry';
+import { ghostRegistry } from './GhostRegistry';
 
 /**
  * Infer component name from stack trace (development only)
@@ -64,12 +64,6 @@ function inferComponentName(): string {
  * ```
  */
 export function useGhost(alias?: string): string {
-  // In production, return empty string immediately
-  if (!GhostRegistry.isDevMode()) {
-    return '';
-  }
-
-  // Use ref to maintain stability across renders
   const ghostIdRef = useRef<string | null>(null);
   const componentNameRef = useRef<string | null>(null);
 
@@ -80,7 +74,7 @@ export function useGhost(alias?: string): string {
     componentNameRef.current = componentName;
 
     // Generate or retrieve ghost ID
-    const ghostId = GhostRegistry.getOrCreate(componentName, alias);
+    const ghostId = ghostRegistry.getOrCreate(componentName, alias);
     ghostIdRef.current = ghostId;
   }
 
@@ -101,5 +95,5 @@ export function useGhost(alias?: string): string {
  * Useful for debugging or displaying the registry
  */
 export function useGhostRegistry(): Record<string, string> {
-  return GhostRegistry.list();
+  return ghostRegistry.list();
 }
