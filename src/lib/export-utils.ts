@@ -1,12 +1,12 @@
-import { ghostRegistry } from './GhostRegistry';
+import { GhostRegistry } from './GhostRegistry';
 
-export function exportAsJSON(pretty: boolean = true): string {
-    const data = ghostRegistry.list();
+export function exportAsJSON(registry: GhostRegistry, pretty: boolean = true): string {
+    const data = registry.list();
     return JSON.stringify(data, null, pretty ? 2 : 0);
 }
 
-export function exportAsTypeScript(): string {
-    const entries = ghostRegistry.list();
+export function exportAsTypeScript(registry: GhostRegistry): string {
+    const entries = registry.list();
     const lines = [
         '/**',
         ' * Auto-generated Ghost IDs',
@@ -28,13 +28,13 @@ export function exportAsTypeScript(): string {
     return lines.join('\n');
 }
 
-export function downloadGhostIds(format: 'json' | 'ts' = 'json'): void {
+export function downloadGhostIds(registry: GhostRegistry, format: 'json' | 'ts' = 'json'): void {
     if (typeof window === 'undefined') {
         console.error('downloadGhostIds can only be used in browser');
         return;
     }
 
-    const content = format === 'json' ? exportAsJSON() : exportAsTypeScript();
+    const content = format === 'json' ? exportAsJSON(registry) : exportAsTypeScript(registry);
     const filename = `ghost-ids.${format === 'json' ? 'json' : 'ts'}`;
     const mimeType = format === 'json' ? 'application/json' : 'text/typescript';
 
@@ -51,13 +51,13 @@ export function downloadGhostIds(format: 'json' | 'ts' = 'json'): void {
     console.log(`✅ Downloaded ${filename}`);
 }
 
-export async function copyGhostIdsToClipboard(format: 'json' | 'ts' = 'json'): Promise<void> {
+export async function copyGhostIdsToClipboard(registry: GhostRegistry, format: 'json' | 'ts' = 'json'): Promise<void> {
     if (typeof window === 'undefined' || !navigator.clipboard) {
         console.error('Clipboard API not available');
         return;
     }
 
-    const content = format === 'json' ? exportAsJSON() : exportAsTypeScript();
+    const content = format === 'json' ? exportAsJSON(registry) : exportAsTypeScript(registry);
 
     try {
         await navigator.clipboard.writeText(content);
@@ -67,18 +67,17 @@ export async function copyGhostIdsToClipboard(format: 'json' | 'ts' = 'json'): P
     }
 }
 
-export function printGhostIds(): void {
+export function printGhostIds(registry: GhostRegistry): void {
     console.log('👻 Ghost Registry Export');
     console.log('========================\n');
-
-    const entries = ghostRegistry.getDetails();
+    const entries = registry.getDetails();
 
     console.table(entries);
 
     console.log('\n📋 Copy-paste ready formats:\n');
     console.log('JSON:');
-    console.log(exportAsJSON());
+    console.log(exportAsJSON(registry));
 
     console.log('\n\nTypeScript:');
-    console.log(exportAsTypeScript());
+    console.log(exportAsTypeScript(registry));
 }

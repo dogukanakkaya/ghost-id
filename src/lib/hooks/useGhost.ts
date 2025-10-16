@@ -1,8 +1,8 @@
-import { useRef, useEffect } from 'react';
-import { ghostRegistry } from './GhostRegistry';
+import { useRef } from 'react';
+import { useGhostRegistry } from '../GhostRegistryContext';
 
 /**
- * Infer component name from stack trace (development only)
+ * Infer component name from stack trace
  */
 function inferComponentName(): string {
   try {
@@ -66,6 +66,7 @@ function inferComponentName(): string {
 export function useGhost(alias?: string): string {
   const ghostIdRef = useRef<string | null>(null);
   const componentNameRef = useRef<string | null>(null);
+  const registry = useGhostRegistry();
 
   // Initialize ghost ID once
   if (ghostIdRef.current === null) {
@@ -73,27 +74,14 @@ export function useGhost(alias?: string): string {
     const componentName = inferComponentName();
     componentNameRef.current = componentName;
 
+    if (!registry) {
+      throw new Error('useGhost must be used inside a GhostRegistryProvider (mount <GhostExport> or GhostRegistryProvider)');
+    }
+
     // Generate or retrieve ghost ID
-    const ghostId = ghostRegistry.getOrCreate(componentName, alias);
+    const ghostId = registry.getOrCreate(componentName, alias);
     ghostIdRef.current = ghostId;
   }
 
-  // Log registration in development
-  useEffect(() => {
-    if (process.env.NODE_ENV === 'development' && ghostIdRef.current) {
-      console.log(
-        `👻 Ghost registered: ${componentNameRef.current}${alias ? ` (${alias})` : ''} → ${ghostIdRef.current}`
-      );
-    }
-  }, [alias]);
-
   return ghostIdRef.current || '';
-}
-
-/**
- * Hook to get all registered ghost IDs
- * Useful for debugging or displaying the registry
- */
-export function useGhostRegistry(): Record<string, string> {
-  return ghostRegistry.list();
 }

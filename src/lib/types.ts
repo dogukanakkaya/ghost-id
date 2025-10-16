@@ -12,7 +12,6 @@ export interface GhostRegistryInterface {
   list(): Record<string, string>;
   clear(): void;
   getDetails(): GhostEntry[];
-  isDevMode(): boolean;
 }
 
 export interface UseGhostOptions {

@@ -1,5 +1,5 @@
-export { ghostRegistry } from './lib/GhostRegistry';
-export { useGhost, useGhostRegistry } from './lib/useGhost';
+export { GhostRegistry } from './lib/GhostRegistry';
+export { useGhost } from './lib/hooks/useGhost';
 export {
   exportAsJSON,
   exportAsTypeScript,
@@ -8,6 +8,8 @@ export {
   printGhostIds,
 } from './lib/export-utils';
 export { GhostExport } from './lib/GhostExport';
+export { GhostRegistryProvider, useGhostRegistry } from './lib/GhostRegistryContext';
+export { useGhostActions } from './lib/hooks/useGhostActions';
 export type {
   GhostEntry,
   GhostId,

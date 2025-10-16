@@ -1,18 +1,23 @@
 import { useEffect } from 'react';
 import { LoginButton } from './components/LoginButton';
 import { LoginForm } from './components/LoginForm';
-import { ghostRegistry, downloadGhostIds, copyGhostIdsToClipboard, printGhostIds } from '../src/index';
+import { useGhostActions, useGhostRegistry } from '../src/index';
 
 function App() {
+    const actions = useGhostActions();
+    const registry = useGhostRegistry();
+
     useEffect(() => {
         // Log the ghost registry after components mount
         setTimeout(() => {
-            console.log('👻 Ghost Registry:');
-            console.table(ghostRegistry.list());
-            console.log('\n📋 Detailed Registry:');
-            console.table(ghostRegistry.getDetails());
+            if (registry) {
+                console.log('👻 Ghost Registry:');
+                console.table(registry.list());
+                console.log('\n📋 Detailed Registry:');
+                console.table(registry.getDetails());
+            }
         }, 100);
-    }, []);
+    }, [registry]);
 
     return (
         <div style={{
@@ -108,7 +113,7 @@ cy.get('[data-gh*="username-input"]').type('user123');`}
                     </h3>
                     <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
                         <button
-                            onClick={() => downloadGhostIds('json')}
+                            onClick={() => actions.download('json')}
                             style={{
                                 padding: '8px 16px',
                                 fontSize: '14px',
@@ -122,7 +127,7 @@ cy.get('[data-gh*="username-input"]').type('user123');`}
                             📥 Download JSON
                         </button>
                         <button
-                            onClick={() => downloadGhostIds('ts')}
+                            onClick={() => actions.download('ts')}
                             style={{
                                 padding: '8px 16px',
                                 fontSize: '14px',
@@ -136,7 +141,7 @@ cy.get('[data-gh*="username-input"]').type('user123');`}
                             📥 Download TypeScript
                         </button>
                         <button
-                            onClick={() => copyGhostIdsToClipboard('json')}
+                            onClick={() => actions.copy('json')}
                             style={{
                                 padding: '8px 16px',
                                 fontSize: '14px',
@@ -150,7 +155,7 @@ cy.get('[data-gh*="username-input"]').type('user123');`}
                             📋 Copy JSON
                         </button>
                         <button
-                            onClick={() => printGhostIds()}
+                            onClick={() => actions.print()}
                             style={{
                                 padding: '8px 16px',
                                 fontSize: '14px',

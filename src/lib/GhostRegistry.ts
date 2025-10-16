@@ -1,11 +1,11 @@
-type GhostEntry = {
+export type GhostEntry = {
   componentName: string;
   alias?: string;
   ghostId: string;
   renderIndex: number;
 };
 
-class GhostRegistry {
+export class GhostRegistry {
   private registry: Map<string, GhostEntry> = new Map();
   private componentCounters: Map<string, number> = new Map();
 
@@ -81,6 +81,3 @@ class GhostRegistry {
     return Array.from(this.registry.values());
   }
 }
-
-// Export singleton instance
-export const ghostRegistry = new GhostRegistry();
