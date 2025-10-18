@@ -140,34 +140,6 @@ cy.get('[data-gh*="username-input"]').type('user123');`}
                         >
                             📥 Download TypeScript
                         </button>
-                        <button
-                            onClick={() => actions.copy('json')}
-                            style={{
-                                padding: '8px 16px',
-                                fontSize: '14px',
-                                backgroundColor: '#06b6d4',
-                                color: 'white',
-                                border: 'none',
-                                borderRadius: '4px',
-                                cursor: 'pointer'
-                            }}
-                        >
-                            📋 Copy JSON
-                        </button>
-                        <button
-                            onClick={() => actions.print()}
-                            style={{
-                                padding: '8px 16px',
-                                fontSize: '14px',
-                                backgroundColor: '#8b5cf6',
-                                color: 'white',
-                                border: 'none',
-                                borderRadius: '4px',
-                                cursor: 'pointer'
-                            }}
-                        >
-                            🖨️ Print to Console
-                        </button>
                     </div>
                     <p style={{ fontSize: '12px', color: '#666', marginTop: '10px', marginBottom: 0 }}>
                         Export ghost IDs to use in your tests. Check the console for more details!
