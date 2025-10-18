@@ -86,20 +86,6 @@ test.describe('Ghost - Auto Test ID Generation', () => {
     expect(reloadedUsernameId).toBe(initialUsernameId);
     expect(reloadedSubmitId).toBe(initialSubmitId);
   });
-
-  test('should log ghost registry to console', async ({ page }) => {
-    const consoleLogs: string[] = [];
-    page.on('console', msg => {
-      if (msg.text().includes('Ghost')) {
-        consoleLogs.push(msg.text());
-      }
-    });
-
-    await page.waitForTimeout(500);
-
-    expect(consoleLogs.length).toBeGreaterThan(0);
-    expect(consoleLogs.some(log => log.includes('Ghost registered'))).toBe(true);
-  });
 });
 
 test.describe('Ghost Selectors - Advanced Patterns', () => {

@@ -8,10 +8,7 @@
     "ghost-id": "./bin/ghost-id"
   },
   "scripts": {
-    "build": "tsc",
-    "dev": "vite ./examples",
-    "preview": "vite preview",
-    "test:e2e": "playwright test"
+    "build": "tsc"
   },
   "keywords": [
     "react",
@@ -23,18 +20,15 @@
   "author": "",
   "license": "MIT",
   "peerDependencies": {
-    "react": "^19.2.0"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
-    "@playwright/test": "^1.56.0",
     "@types/node": "^24.8.0",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
-    "@vitejs/plugin-react": "^5.0.4",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "tsx": "^4.20.6",
-    "typescript": "^5.9.3",
-    "vite": "^7.1.10"
+    "typescript": "^5.9.3"
   }
 }

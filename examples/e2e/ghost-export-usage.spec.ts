@@ -1,5 +1,5 @@
 import { test, expect, Page } from '@playwright/test';
-import { GHOST_IDS, getGhostSelector, getGhostSelectorPartial } from '../examples/ghost-ids';
+import { GHOST_IDS, getGhostSelector, getGhostSelectorPartial } from './ghost-ids';
 
 test.describe('Using Exported Ghost IDs', () => {
     test.beforeEach(async ({ page }) => {

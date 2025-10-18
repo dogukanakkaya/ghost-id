@@ -1,4 +1,4 @@
-import { useGhost } from '../../src/index';
+import { useGhost } from '../../../../src/index';
 import { useState } from 'react';
 
 export function LoginForm() {

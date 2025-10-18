@@ -1,4 +1,4 @@
-import { useGhost } from '../../src/index';
+import { useGhost } from '../../../../src/index';
 
 export function LoginButton() {
   const ghostId = useGhost();

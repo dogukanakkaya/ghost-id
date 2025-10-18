@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { LoginButton } from './components/LoginButton';
 import { LoginForm } from './components/LoginForm';
-import { useGhostActions, useGhostRegistry } from '../src/index';
+import { useGhostActions, useGhostRegistry } from '../../../src/index';
 
 function App() {
     const actions = useGhostActions();
