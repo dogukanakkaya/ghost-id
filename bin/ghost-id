@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+
+try {
+    require('../dist/cli/ghost-id.js').main();
+} catch (err) {
+    // If the compiled file doesn't exist, show a helpful error
+    console.error('Ghost CLI: compiled file not found. Run `npm run build` in the package root.');
+    console.error(err && err.stack ? err.stack : err);
+    process.exit(1);
+}

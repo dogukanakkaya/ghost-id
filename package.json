@@ -5,10 +5,10 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "ghost-export": "./src/cli/ghost-export.ts"
+    "ghost-id": "./bin/ghost-id"
   },
   "scripts": {
-    "ghost-export": "tsx src/cli/ghost-export.ts",
+    "build": "tsc",
     "dev": "vite ./examples",
     "preview": "vite preview",
     "test:e2e": "playwright test"

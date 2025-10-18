@@ -1,17 +1,3 @@
-#!/usr/bin/env tsx
-
-/**
- * Ghost CLI - Export Tool
- * 
- * Exports all registered ghost IDs from the browser to JSON or TypeScript files
- * for use in tests.
- * 
- * Usage:
- *   ghost-export --format json --output ./ghost-ids.json
- *   ghost-export --format ts --output ./ghost-ids.ts
- *   ghost-export --url http://localhost:3000 --format json
- */
-
 import { writeFileSync } from 'fs';
 import { resolve } from 'path';
 
@@ -269,9 +255,4 @@ ALTERNATIVE - Direct from Console:
 
 Then copy the JSON between the markers.
   `);
-}
-
-const isMainModule = import.meta.url === `file://${process.argv[1]}`;
-if (isMainModule) {
-    main();
 }
