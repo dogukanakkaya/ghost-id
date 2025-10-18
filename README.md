@@ -1,6 +1,6 @@
-# react-ghost
+# ghost-id
 
-React Ghost — tiny utility to attach deterministic, test-friendly "ghost" IDs to
+Ghost ID — tiny utility to attach deterministic, test-friendly "ghost" IDs to
 components and export them for tests or automation.
 
 ## CLI Usage
