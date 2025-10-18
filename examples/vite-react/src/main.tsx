@@ -1,13 +1,13 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
-import { GhostExport } from '../../../src/index.ts'
+import { GhostID } from '../../../src/index.ts'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    {/* Render <GhostExport> conditionally if needed, for different environments */}
-    <GhostExport>
+    {/* Render <GhostID> conditionally if needed, for different environments */}
+    <GhostID>
       <App />
-    </GhostExport>
+    </GhostID>
   </StrictMode>,
 )

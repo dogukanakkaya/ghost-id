@@ -75,7 +75,7 @@ export function useGhost(alias?: string): string {
     componentNameRef.current = componentName;
 
     if (!registry) {
-      throw new Error('useGhost must be used inside a GhostRegistryProvider (mount <GhostExport> or GhostRegistryProvider)');
+      throw new Error('useGhost must be used inside a GhostRegistryProvider (mount <GhostID> or GhostRegistryProvider)');
     }
 
     // Generate or retrieve ghost ID

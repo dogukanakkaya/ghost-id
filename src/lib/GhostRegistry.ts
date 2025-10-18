@@ -1,3 +1,5 @@
+import { hashString } from "../utils/hash";
+
 export type GhostEntry = {
   componentName: string;
   alias?: string;
@@ -8,19 +10,6 @@ export type GhostEntry = {
 export class GhostRegistry {
   private registry: Map<string, GhostEntry> = new Map();
   private componentCounters: Map<string, number> = new Map();
-
-  /**
-   * Simple hash function to generate short deterministic IDs
-   */
-  private hashString(str: string): string {
-    let hash = 0;
-    for (let i = 0; i < str.length; i++) {
-      const char = str.charCodeAt(i);
-      hash = ((hash << 5) - hash) + char;
-      hash = hash & hash; // Convert to 32bit integer
-    }
-    return Math.abs(hash).toString(36).slice(0, 6);
-  }
 
   /**
    * Get or create a ghost ID for a component
@@ -42,7 +31,7 @@ export class GhostRegistry {
 
     // Generate deterministic ghost ID
     const idString = `${componentName}-${alias || ''}-${renderIndex}`;
-    const hash = this.hashString(idString);
+    const hash = hashString(idString);
     const ghostId = alias
       ? `gh-${componentName}-${alias}-${hash}`
       : `gh-${componentName}-${hash}`;

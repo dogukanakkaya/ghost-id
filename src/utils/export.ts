@@ -1,4 +1,4 @@
-import { GhostRegistry } from './GhostRegistry';
+import { GhostRegistry } from '../lib/GhostRegistry';
 
 export function exportAsJSON(registry: GhostRegistry, pretty: boolean = true): string {
     const data = registry.list();
@@ -49,35 +49,4 @@ export function downloadGhostIds(registry: GhostRegistry, format: 'json' | 'ts' 
     URL.revokeObjectURL(url);
 
     console.log(`✅ Downloaded ${filename}`);
-}
-
-export async function copyGhostIdsToClipboard(registry: GhostRegistry, format: 'json' | 'ts' = 'json'): Promise<void> {
-    if (typeof window === 'undefined' || !navigator.clipboard) {
-        console.error('Clipboard API not available');
-        return;
-    }
-
-    const content = format === 'json' ? exportAsJSON(registry) : exportAsTypeScript(registry);
-
-    try {
-        await navigator.clipboard.writeText(content);
-        console.log(`✅ Ghost IDs copied to clipboard (${format} format)`);
-    } catch (error) {
-        console.error('Failed to copy to clipboard:', error);
-    }
-}
-
-export function printGhostIds(registry: GhostRegistry): void {
-    console.log('👻 Ghost Registry Export');
-    console.log('========================\n');
-    const entries = registry.getDetails();
-
-    console.table(entries);
-
-    console.log('\n📋 Copy-paste ready formats:\n');
-    console.log('JSON:');
-    console.log(exportAsJSON(registry));
-
-    console.log('\n\nTypeScript:');
-    console.log(exportAsTypeScript(registry));
 }

@@ -8,6 +8,7 @@ export function useGhostRegistry(): GhostRegistry | null {
 }
 
 export const GhostRegistryProvider: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
+    // @TODO: accept excludeRenderIndex option
     const registry = useMemo(() => new GhostRegistry(), []);
     return <GhostRegistryContext.Provider value={registry}>{children}</GhostRegistryContext.Provider>;
 };
