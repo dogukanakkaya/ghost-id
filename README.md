@@ -3,6 +3,12 @@
 Ghost ID — tiny utility to attach deterministic, test-friendly "ghost" IDs to
 components and export them for tests or automation.
 
+## Installation
+
+```bash
+npm install ghost-id
+```
+
 ## CLI Usage
 
 The CLI can either read a JSON registry from stdin (piped) or run a static scan
@@ -50,7 +56,7 @@ import LoginForm from "./LoginForm";
 
 function Root() {
     // Mount the registry in development only, if desired
-    if (process.env.NODE_ENV === "production") {
+    if (process.env.NODE_ENV === 'production') {
         return <LoginForm />;
     }
 
@@ -74,7 +80,7 @@ export function LoginForm() {
         <form data-gh={ghostId}>
             <input data-gh={usernameInputGhost} />
         </form>
-    )
+    );
 }
 ```
 
