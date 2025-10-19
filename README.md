@@ -136,3 +136,8 @@ await page.fill(getGhostSelector(GHOST_IDS["LoginForm-username"]), "alice");
   ghost ID usages. This will only work correctly for components that are mounted
   once or if you set `excludeRenderIndex: true` in GhostID.
   - `excludeRenderIndex` is not yet implemented.
+
+## Todo
+- Add `excludeRenderIndex` option to GhostID wrapper to avoid render index suffixes in static scan mode.
+- Semantic release
+- Esbuild minification
